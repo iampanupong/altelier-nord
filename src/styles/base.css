@@ -1,0 +1,82 @@
+/* Layout variables that change with the viewport */
+:root {
+  --gutter: 1rem;
+  --header-height: 4rem;
+  --section-space: 3rem;
+
+  @variant md {
+    --gutter: 1.875rem;
+    --header-height: 5.5rem;
+    --section-space: 4rem;
+  }
+
+  @variant xl {
+    --gutter: 3rem;
+    --section-space: 5rem;
+  }
+}
+
+@layer base {
+  html {
+    background-color: var(--color-white);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    letter-spacing: var(--tracking-normal);
+    line-height: var(--leading-stretched);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-padding-top: var(--header-height);
+  }
+
+  body {
+    background-color: var(--color-white);
+  }
+
+  /* Hairlines are the only border style */
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-line);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 400;
+    line-height: var(--leading-compact);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  strong,
+  b {
+    font-weight: 500;
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-white);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-ink);
+    outline-offset: 1px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

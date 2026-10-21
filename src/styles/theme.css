@@ -1,0 +1,72 @@
+/*
+ * Design tokens: monochrome, editorial, square-cornered.
+ * Default Tailwind palettes, type scale and radii are cleared so only these tokens exist.
+ */
+@theme {
+  /* Breakpoints: md 768px, lg 1024px, xl 1440px */
+  --breakpoint-xl: 90rem;
+  --breakpoint-2xl: initial;
+
+  /* Fonts (Jost is loaded by next/font in the root layout) */
+  --font-sans: var(--font-jost), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Colors */
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-ink: #1a1a1a; /* default text */
+  --color-muted: #727272; /* secondary text, prices, inactive nav */
+  --color-surface: #f8f8f8; /* product tiles, text on dark */
+  --color-line: #e1e1e1; /* hairline borders */
+  --color-danger: #b3261e;
+  --color-success: #1e6b3a;
+  --color-scrim: rgb(0 0 0 / 0.5);
+
+  /* Type scale: size, line height, tracking */
+  --text-*: initial;
+  --text-overline: 0.75rem;
+  --text-overline--line-height: 1.25;
+  --text-overline--letter-spacing: 0.0625rem;
+  --text-caption: 0.875rem;
+  --text-caption--line-height: 1.25;
+  --text-body: 1rem;
+  --text-body--line-height: 1.5;
+  --text-heading-s: 1.25rem;
+  --text-heading-s--line-height: 1.25;
+  --text-heading-m: 1.5rem;
+  --text-heading-m--line-height: 1.25;
+  --text-heading-l: 2rem;
+  --text-heading-l--line-height: 1.25;
+  --text-display-m: 3rem;
+  --text-display-m--line-height: 1.25;
+  --text-display-l: 4rem;
+  --text-display-l--line-height: 1.25;
+
+  --tracking-*: initial;
+  --tracking-normal: 0.025rem;
+  --tracking-wide: 0.0625rem;
+
+  --leading-*: initial;
+  --leading-compact: 1.25;
+  --leading-stretched: 1.5;
+
+  /* Shape: square by default, pill for buttons, small radius only for dialogs */
+  --radius-*: initial;
+  --radius-sm: 0.25rem;
+  --radius-pill: 9999px;
+
+  --shadow-*: initial;
+  --shadow-top: 0 -16px 24px -4px rgb(0 0 0 / 0.06);
+  --shadow-bottom: 0 24px 24px -4px rgb(0 0 0 / 0.04);
+
+  --aspect-product: 4 / 5;
+  --aspect-portrait: 3 / 4;
+  --aspect-hero: 16 / 9;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --default-transition-duration: 300ms;
+  --default-transition-timing-function: var(--ease-out);
+}

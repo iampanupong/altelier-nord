@@ -1,0 +1,350 @@
+/*
+ * Reusable primitives. Declared with @utility so they accept variants (md:, hover:, etc.)
+ * and combine with regular Tailwind utilities.
+ */
+
+/* ---------- Containers & layout ---------- */
+
+/* Full-width page content with responsive side gutters */
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Reading width for text, forms and checkout steps */
+@utility container-narrow {
+  width: 100%;
+  max-width: 40rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Vertical rhythm between page sections */
+@utility section {
+  padding-block: var(--section-space);
+}
+
+@utility h-header {
+  height: var(--header-height);
+}
+
+@utility pt-header {
+  padding-top: var(--header-height);
+}
+
+@utility top-header {
+  top: var(--header-height);
+}
+
+/* Edge-to-edge product listing: no gaps, tiles touch */
+@utility grid-products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  @variant md {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Spaced tiles for categories and editorial cards */
+@utility grid-tiles {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  @variant md {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Horizontally scrolling rows (category tabs, carousels) */
+@utility scroll-row {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & > * {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+}
+
+/* ---------- Typography ---------- */
+
+@utility type-display {
+  font-size: var(--text-display-m);
+  line-height: var(--leading-compact);
+
+  @variant lg {
+    font-size: var(--text-display-l);
+  }
+}
+
+/* Page and section titles: 24px mobile, 32px desktop */
+@utility type-title {
+  font-size: var(--text-heading-m);
+  line-height: var(--leading-compact);
+
+  @variant lg {
+    font-size: var(--text-heading-l);
+  }
+}
+
+@utility type-subtitle {
+  font-size: var(--text-heading-s);
+  line-height: var(--leading-compact);
+}
+
+@utility type-body {
+  font-size: var(--text-body);
+  line-height: var(--leading-stretched);
+}
+
+/* Product names, prices, metadata */
+@utility type-caption {
+  font-size: var(--text-caption);
+  line-height: var(--leading-compact);
+}
+
+/* Small uppercase kicker above titles */
+@utility type-overline {
+  font-size: var(--text-overline);
+  line-height: var(--leading-compact);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* ---------- Buttons ---------- */
+
+/* Pill, 48px tall, regular weight. Pair with a variant below. */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.75rem 2rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: 1.25;
+  white-space: nowrap;
+  cursor: pointer;
+  transition-property: background-color, border-color, color, opacity;
+  transition-duration: 150ms;
+  transition-timing-function: var(--ease-out);
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}
+
+@utility btn-primary {
+  background-color: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-surface);
+
+  &:hover {
+    background-color: var(--color-ink);
+    border-color: var(--color-ink);
+  }
+}
+
+@utility btn-secondary {
+  background-color: transparent;
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+
+  &:hover {
+    background-color: var(--color-surface);
+  }
+}
+
+/* For use on dark imagery */
+@utility btn-inverse {
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-ink);
+
+  &:hover {
+    background-color: var(--color-surface);
+  }
+}
+
+@utility btn-sm {
+  min-height: 2.5rem;
+  padding: 0.5rem 1.5rem;
+  font-size: var(--text-caption);
+}
+
+@utility btn-block {
+  display: flex;
+  width: 100%;
+}
+
+/* Icon-only action (header, wishlist), 44px hit area */
+@utility btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-pill);
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-out);
+
+  &:hover {
+    background-color: rgb(0 0 0 / 0.04);
+  }
+}
+
+/* ---------- Links ---------- */
+
+/* Inline text link: underline appears on hover */
+@utility link {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color 150ms var(--ease-out);
+
+  &:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+/* Call-to-action link: always underlined */
+@utility link-cta {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
+  transition: opacity 150ms var(--ease-out);
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+/* Nav and filter tabs: muted, ink when hovered or current, 1px bar under the current one */
+@utility link-tab {
+  position: relative;
+  padding-block: 0.75rem;
+  color: var(--color-muted);
+  transition: color 150ms var(--ease-out);
+
+  &:hover,
+  &[aria-current="page"],
+  &[aria-selected="true"] {
+    color: var(--color-ink);
+  }
+
+  &[aria-current="page"]::after,
+  &[aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: currentColor;
+  }
+}
+
+/* ---------- Form fields ---------- */
+
+/* Underline-only text input */
+@utility input-line {
+  width: 100%;
+  padding-block: 0.75rem;
+  border-bottom: 1px solid var(--color-ink);
+  background-color: transparent;
+  color: var(--color-ink);
+  border-radius: 0;
+
+  &::placeholder {
+    color: var(--color-muted);
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-bottom-width: 2px;
+    margin-bottom: -1px;
+  }
+}
+
+/* ---------- Borders ---------- */
+
+@utility hairline {
+  border-width: 1px;
+  border-color: var(--color-line);
+}
+
+@utility hairline-t {
+  border-top-width: 1px;
+  border-color: var(--color-line);
+}
+
+@utility hairline-b {
+  border-bottom-width: 1px;
+  border-color: var(--color-line);
+}
+
+/* Stacked rows separated by hairlines (accordions, order lines, specs) */
+@utility divide-hairline {
+  & > * + * {
+    border-top-width: 1px;
+    border-color: var(--color-line);
+  }
+}
+
+/* ---------- Media ---------- */
+
+/* Product image tile: light gray ground, product contained, square corners */
+@utility media-tile {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--aspect-product);
+  background-color: var(--color-surface);
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+/* Editorial and campaign imagery: fills its box */
+@utility media-cover {
+  position: relative;
+  overflow: hidden;
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Bottom gradient so text over imagery stays legible */
+@utility scrim {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 50%, var(--color-scrim));
+  }
+}
